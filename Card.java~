@@ -1,0 +1,63 @@
+//Card class
+
+public class Card {
+  
+  //instance variables
+  private int numberValue;
+  private String cardValue;
+  private String suit;
+  
+  public Card(int v, String s) {
+    if (v<2 || v>14)
+      System.out.println("This card does not exist.");
+    else
+      numberValue = v;
+    if (s.equals("Spades") || s.equals("Clubs") || s.equals("Hearts") || s.equals("Diamonds")) {
+      suit = s;
+    }
+    else {
+      System.out.println("The only available suits are Spades, Clubs, Hearts and Diamonds.");
+    }
+    if (v == 11)
+      cardValue = "Jack";
+    else if (v == 12)
+      cardValue = "Queen";
+    else if (v == 13)
+      cardValue = "King";
+    else if (v == 14) 
+      cardValue = "Ace";
+    else
+      cardValue = String.valueOf(v);
+  }
+  
+  public String toString() {
+    String s = "";
+    s += cardValue + " of " + suit + "\n";
+    s += "Value: " + numberValue;
+    return s;
+  }
+  
+  //getter methods
+  
+  public int getNumberValue() {
+    return numberValue;
+  }
+  
+  public String getCardValue() {
+    return cardValue;
+  }
+  
+  public String getSuit() {
+    return suit;
+  }
+  public static void main(String[] args) {
+    Card one = new Card(12, "Spades");
+    Card two = new Card(5, "Clubs");
+    Card three = new Card(10, "Hearts");
+    Card four = new Card(14, "Diamonds");
+    System.out.println(one);
+    System.out.println(two);
+    System.out.println(three);
+    System.out.println(four);
+  }
+}

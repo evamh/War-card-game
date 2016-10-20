@@ -1,0 +1,39 @@
+//Player 
+
+public class Player {
+  
+  //instance variables
+  private LinkedList<Card> cards;
+  private int numCards;
+  private boolean hasWon;
+  
+  public Player(LinkedList<Card> c, int n) {
+    cards = c;
+    numCards = n;
+    hasWon = false;
+  }
+  
+  //getter methods
+  public LinkedList<Card> getCards() {
+    return cards;
+  }
+  
+  public int getNumCards() {
+    return numCards;
+  }
+  
+  public boolean getHasWon() {
+    return hasWon;
+  }
+  
+  //draw Card method 
+  public Card drawCard() {
+    Card card = cards.removeLast();
+    numCards--;
+    return card;
+  }
+  
+
+
+
+}
