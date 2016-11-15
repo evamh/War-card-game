@@ -1,4 +1,10 @@
-//Card class
+/* WAR CARD GAME
+ * By Eva Hayek
+ * Updated 2016
+ * 
+ * CARD CLASS
+ * This class implements a card object.
+ */
 
 public class Card {
   

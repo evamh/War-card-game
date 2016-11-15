@@ -1,4 +1,10 @@
-//Player class 
+/* WAR CARD GAME
+ * By Eva Hayek
+ * Updated 2016
+ * 
+ * PLAYER CLASS
+ * This class implements a player object.
+ */
 
 import java.util.*;
 import java.io.*;

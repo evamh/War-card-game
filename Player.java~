@@ -1,19 +1,32 @@
-//Player 
+//Player class 
+
+import java.util.*;
+import java.io.*;
 
 public class Player {
   
   //instance variables
   private LinkedList<Card> cards;
+  private int playerNumber;
   private int numCards;
   private boolean hasWon;
+  private Card currentCard;
+  private int numPoints;
   
-  public Player(LinkedList<Card> c, int n) {
+  public Player(int pn, LinkedList<Card> c) {
+    playerNumber = pn;
     cards = c;
-    numCards = n;
+    numCards = 26;
     hasWon = false;
+    currentCard = null;
+    numPoints = 0;
   }
   
   //getter methods
+  public int getPlayerNumber() {
+    return playerNumber;
+  }
+  
   public LinkedList<Card> getCards() {
     return cards;
   }
@@ -26,14 +39,40 @@ public class Player {
     return hasWon;
   }
   
-  //draw Card method 
-  public Card drawCard() {
-    Card card = cards.removeLast();
-    numCards--;
-    return card;
+  public Card getCurrentCard() {
+    return currentCard;
   }
   
-
-
-
+  public int getNumPoints() {
+    return numPoints;
+  }
+  
+  //draw Card method 
+  public Card drawCard() {
+    currentCard = cards.removeLast();
+    numCards--;
+    return currentCard;
+  }
+  
+  //setter method
+  public void setHasWon(boolean value) {
+    hasWon = value;
+  }
+  
+  public void addPoint() {
+    numPoints++;
+  }
+  
+  //toString method
+  public String toString() {
+    String s = "";
+    s += "Player: " + playerNumber + "\n";
+    s += "Current card: " + currentCard; 
+    s += "Has: " + numCards + "\n";
+    s += "HasWon?: " + hasWon;
+    s += "Cards: \n";
+    s += cards.toString();
+    return s;
+  } 
+  
 }

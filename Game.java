@@ -1,7 +1,13 @@
-//Game class
-
+/* WAR CARD GAME
+ * By Eva Hayek
+ * Updated 2016
+ * 
+ * GAME CLASS
+ * This class implements the game, and is the class that invokes the game() method.
+ */
 import java.util.*;
 import java.io.*;
+import java.util.Scanner;
 
 public class Game {
   
@@ -31,10 +37,72 @@ public class Game {
   
   
   public void game() {
-    while (numRounds < 26) {
-      round();
+    System.out.println("Welcome to the card game War!");
+    System.out.println("Today, you and I are going to battle it out for the title of Champion! But first, let me " +
+                       "explain how this works.");
+    System.out.println("There are 26 rounds, and in each round we draw a card. Whoever draws the card with the highest "
+                         + "value wins the round and gets 1 point. If we draw equal value cards, then no one gets any " 
+                         + "points.");
+    System.out.println("There is one catch though. In each round, there is a TRUMPS suit. If either of us draw a " + 
+                       "card from this suit, we automatically win the round. If we both draw a card from this suit, " +
+                       "then whoever draws the card with the highest value wins.");
+    System.out.println("At the end of the game, whoever has the most points win!");
+    System.out.println("There we have it! Ready to play? Type START to start. Or, if you're too scared, "
+                         + "type QUIT to quit.");
+    
+    Scanner scanner = new Scanner(System.in);
+    String answer = scanner.next().toUpperCase();
+    
+    while ((!answer.equals("START")) && (!answer.equals("QUIT"))) {
+      System.out.println("Error. Please type START or QUIT.");
+      answer = scanner.next().toUpperCase();
     }
-    gameOver();
+    
+    if (answer.equals("QUIT")) {
+      System.out.println("Too bad! This could have been fun. See you next time!");
+      try {
+        Thread.sleep(2000);
+      }
+      catch (InterruptedException e) {
+        System.out.println("An error occurred.");
+      }
+      System.exit(0);
+    }
+    
+    else {
+      System.out.println("You've decided to play. Best of luck to you.");
+      while (numRounds < 26) {
+        round();
+      }
+      gameOver();
+    }
+    if (gameOver == true) {
+      System.out.println("\nWould you like to play again? Type YES to start over, or NO to quit.");
+      
+      Scanner scanner2 = new Scanner(System.in);
+      String answer2 = scanner2.next().toUpperCase();
+      
+      while (!answer2.equals("YES") && !answer2.equals("NO")) {
+        System.out.println("Error. Please type YES or NO.");
+        answer2 = scanner2.next().toUpperCase();
+      }
+      
+      if (answer2.equals("YES")) {
+        System.out.println("Starting over...");
+        createNewGame();
+      }
+      else if (answer2.equals("NO")) {
+        System.out.println("See you next time!");
+        try {
+          Thread.sleep(2000);
+        }
+        catch (InterruptedException e) {
+          System.out.println("An error occurred.");
+        }
+        System.exit(0);
+      }
+      
+    }
   }
   
   public void round() {
@@ -64,11 +132,18 @@ public class Game {
       System.out.println("Player 2 won the point!");
       player2.addPoint();
     }
-
+    
     System.out.println("Player 1 now has: " + player1.getNumPoints() + " points");
     System.out.println("Player 2 now has: " + player2.getNumPoints() + " points");
     
     numRounds++;
+    
+    try {
+      Thread.sleep(3000);
+    }
+    catch (InterruptedException e) {
+      System.out.println("An error occurred.");
+    }
   }
   
   private String trumpsSuit() {
@@ -124,8 +199,12 @@ public class Game {
         System.out.println("Tie!");
       }
       else {
-        System.out.println("Player "  + whoWon().getPlayerNumber() + " has won with " 
-                             + whoWon().getNumPoints() + " points.");
+        if (whoWon().getPlayerNumber() == 1) {
+          System.out.println("Congratulations! You won with " + whoWon().getNumPoints() + " points! I admit defeat.");
+        }
+        else if (whoWon().getPlayerNumber() == 2) {
+          System.out.println("Haha! I won with " + whoWon().getNumPoints() + " points! I am the true champion!");
+        }
       }
     }
     return gameOver;
@@ -141,6 +220,13 @@ public class Game {
       return player2;
     }
     return winner;
+  }
+  
+  //Helper method - call a new game if needed
+  private void createNewGame() {
+    gameOver = false;
+    Game newGame = new Game();
+    newGame.game();
   }
   
   public static void main(String[] args) {

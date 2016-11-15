@@ -3,8 +3,8 @@
 public class Card {
   
   //instance variables
-  private int numberValue;
-  private String cardValue;
+  private int numberValue; //2...14
+  private String cardValue; //2,3,4,5...Kings, Ace
   private String suit;
   
   public Card(int v, String s) {
@@ -32,8 +32,8 @@ public class Card {
   
   public String toString() {
     String s = "";
-    s += cardValue + " of " + suit + "\n";
-    s += "Value: " + numberValue;
+    s += cardValue + " of " + suit;
+    //s += "Value: " + numberValue;
     return s;
   }
   

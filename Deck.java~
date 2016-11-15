@@ -12,6 +12,7 @@ public class Deck {
   private LinkedList <Card> deck;
   private int deckSize;
   
+  //constructor
   public Deck() {
     
     deck = new LinkedList<Card>();
@@ -39,6 +40,8 @@ public class Deck {
       deck.add(card);
       deckSize++;
     }
+    
+    shuffle();
   }
   
   //shuffle method
@@ -54,6 +57,7 @@ public class Deck {
     deck = newDeck;
   }
   
+  //might be unnecessary 
   public Card drawCard() {
     Card card = deck.removeLast();
     return card;
@@ -78,7 +82,6 @@ public class Deck {
     
     System.out.println(deck);
   }
-  
   
 }
 

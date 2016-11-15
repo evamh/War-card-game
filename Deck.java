@@ -1,5 +1,10 @@
-//Deck class
-//Shuffle method to shuffle cards 
+/* WAR CARD GAME
+ * By Eva Hayek
+ * Updated 2016
+ * 
+ * DECK CLASS
+ * This class implements a deck object.
+ */ 
 
 
 import java.util.*;
